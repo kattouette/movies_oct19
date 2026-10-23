@@ -1,8 +1,8 @@
 let movies = [
-    {id: 1, title:"Dune", year: 2021, watched: false},
-    {id: 2, title:"Interstellar", year: 2022, watched: false},
-    {id: 3, title:"Cars", year: 2026, watched: false},
-    {id: 4, title:"Beginning", year: 2010, watched: false},
+    {id: 1, title:"Dune", year: 2021, watched: false, description: "Пол Атрід вирушає на пустельну планету Арракіс, де розгортається боротьба за владу та цінний ресурс."},
+    {id: 2, title:"Interstellar", year: 2022, watched: false, description: "Команда астронавтів вирушає в космос, щоб знайти новий дім для людства."},
+    {id: 3, title:"Cars", year: 2026, watched: false, description: "Гоночний автомобіль Блискавка Макквін вчиться дружбі та взаємодопомозі."},
+    {id: 4, title:"Beginning", year: 2010, watched: false,  description: "Злодій проникає у сни людей, щоб викрадати ідеї або змінювати їхні переконання."},
 ]
 
 const container = document.getElementById("movie-list");
@@ -14,7 +14,8 @@ const searchInput = document.getElementById("movie-search");
 const searchButton = document.getElementById("movie-find");
 const clearButton = document.getElementById("delete-movies");
 
-addButton.addEventListener("click", () => {
+
+function addMovie() {
     const movie = {
         id: movies.length + 1,
         title: addInput.value,
@@ -24,6 +25,13 @@ addButton.addEventListener("click", () => {
     movies.push(movie);
     renderMovie(movie);
     displayMoviesQuantity();
+    addInput.value = "";
+}
+addButton.addEventListener("click", addMovie);
+addInput.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        addMovie();
+    }
 });
 
 const renderMovie = (movie) => {
@@ -40,6 +48,16 @@ const renderMovie = (movie) => {
     li.appendChild(deleteButton);
     // markWatched(li);
     container.appendChild(li);
+    const link = document.createElement("a");
+    link.href = "#";
+    link.textContent = "Детальніше";
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const info = document.createElement("p");
+        info.textContent = movie.description;
+        li.appendChild(info);
+    });
+    li.appendChild(link);
 };
 
 const renderMovies = (movies) => {
@@ -47,7 +65,6 @@ const renderMovies = (movies) => {
         renderMovie(movie);
     });
 }
-
 const displayMoviesQuantity = () => {
     const watchedMovies = movies.filter(function(movie) {
         return movie.watched; });
@@ -87,6 +104,11 @@ function applyCardStyles(card) {
 function toggleTheme() {
     document.body.classList.toggle("dark");
 }
+document.addEventListener("keydown", function(event) {
+    if (event.key.toLowerCase() === "d") {
+        toggleTheme();
+    }
+});
 // toggleTheme();
 
 function markWatched(card) {
