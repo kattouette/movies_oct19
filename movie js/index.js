@@ -40,7 +40,7 @@ const yearError = document.getElementById("year-error");
 // });
 form.addEventListener("submit", function(event) {
     event.preventDefault();
-    let title = addInput.value.trim();
+    let title = addInput.value();
     let year = Number(yearInput.value);
     nameError.textContent = "";
     yearError.textContent = "";
