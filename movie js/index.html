@@ -11,12 +11,30 @@
     <h1 id='movie-header'>Best movies</h1>
     <ul id='movie-list'></ul>
 </div>
-<div>
+<form id="movie-form">
     <label for="movie-name">Movie name</label>
 <input id="movie-name" type="text" placeholder="Movie name">
+    <small id="name-error" class="error"></small>
     <input id="movie-year" type="number" placeholder="Movie year">
-<button id="movie-add">Add</button>
-</div>
+    <small id="year-error" class="error"></small>
+    <select id="movie-genre" name="genre">
+        <option value="">Choose a genre</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Action">Action</option>
+        <option value="Animation">Animation</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Horror">Horror</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Romance">Romance</option>
+        <option value="Mystery">Mystery</option>
+    </select>
+    <label>
+        <input id="movie-watched" type="checkbox">
+        Watched:
+    </label>
+<button id="movie-add" type="submit">Add</button>
+</form>
 <div>
 <label for="movie-search">Movie search</label>
     <input id="movie-search" type="text">

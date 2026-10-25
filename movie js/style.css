@@ -64,3 +64,8 @@ li:hover {
     background-color: #b3e5fc;
     opacity: 0.7;
 }
+.error {
+    display: block;
+    color: darkred;
+    font-size: 15px;
+}
