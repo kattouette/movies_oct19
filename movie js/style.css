@@ -1,16 +1,16 @@
-body {
+.movie-page {
     font-family: Arial, sans-serif;
     background-color: #eaf6ff;
     color: #1e3a5f;
     padding: 30px;
 }
 
-h1 {
+.movie-header {
     color: #1976b9;
     text-align: center;
 }
 
-input {
+.movie-input {
     padding: 10px;
     border: 2px solid #90caf9;
     border-radius: 8px;
@@ -18,11 +18,11 @@ input {
     margin: 5px;
 }
 
-input:focus {
+.movie-input:focus {
     border-color: #2196f3;
 }
 
-button {
+.movie-button {
     padding: 10px 15px;
     background-color: #2196f3;
     color: white;
@@ -32,18 +32,18 @@ button {
     margin: 5px;
 }
 
-button:hover {
+.movie-button:hover {
     background-color: #1976d2;
 }
 
-ul {
+.movie-list {
     list-style: none;
     padding: 0;
     max-width: 500px;
     margin: 20px auto;
 }
 
-li {
+.movie-list-item {
     background-color: white;
     border: 1px solid #90caf9;
     border-radius: 10px;
@@ -52,12 +52,12 @@ li {
     box-shadow: 0 3px 8px rgba(33, 150, 243, 0.15);
 }
 
-li:hover {
+.movie-list-item:hover {
     background-color: #e3f2fd;
 }
 .dark {
     background-color: #1e3a5f;
-    color: black;
+    color: white;
 }
 .watched {
     text-decoration: line-through;

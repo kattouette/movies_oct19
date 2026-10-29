@@ -6,14 +6,19 @@
     <script src="index.js" defer></script>
     <title>Movies</title>
 </head>
-<body>
+<body id="movie" class="movie-page">
 <div id='app'>
-    <h1 id='movie-header'>Best movies</h1>
-    <ul id='movie-list'></ul>
+    <h1 id='movie-header' class="movie-header">Best movies</h1>
+    <div>
+        <label for="movie-search">Movie search</label>
+        <input id="movie-search" type="text">
+        <button id="movie-find">Find</button>
+    </div>
+    <ul id='movie-list' class="movie-list"></ul>
 </div>
 <form id="movie-form">
     <label for="movie-name">Movie name</label>
-<input id="movie-name" type="text" placeholder="Movie name">
+<input id="movie-name" class="movie-input" type="text" placeholder="Movie name">
     <small id="name-error" class="error"></small>
     <input id="movie-year" type="number" placeholder="Movie year">
     <small id="year-error" class="error"></small>
@@ -33,13 +38,8 @@
         <input id="movie-watched" type="checkbox">
         Watched:
     </label>
-<button id="movie-add" type="submit">Add</button>
+<button id="movie-add" class="movie-button" type="submit">Add</button>
 </form>
-<div>
-<label for="movie-search">Movie search</label>
-    <input id="movie-search" type="text">
-    <button id="movie-find">Find</button>
-</div>
 <div><button id="delete-movies">Delete</button></div>
 <div><button id="theme-button"> Toggle theme </button></div>
 </body>

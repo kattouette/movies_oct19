@@ -40,7 +40,7 @@ const yearError = document.getElementById("year-error");
 // });
 form.addEventListener("submit", function(event) {
     event.preventDefault();
-    let title = addInput.value();
+    let title = addInput.value;
     let year = Number(yearInput.value);
     nameError.textContent = "";
     yearError.textContent = "";
@@ -75,31 +75,56 @@ form.addEventListener("submit", function(event) {
 
 const renderMovie = (movie) => {
     const li = document.createElement("li");
+    li.classList.add("movie-list-item");
     li.textContent = `${movie.title} (${movie.year}) (${movie.genre})`;
+    li.classList.toggle("watched", movie.watched);
     li.setAttribute("data-id", movie.id);
     applyCardStyles(li);
+
     li.addEventListener("click", function () {
         markWatched(li);
         movie.watched = !movie.watched;
+        displayMoviesQuantity();
     });
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "X";
+    deleteButton.classList.add("delete-button");
     li.appendChild(deleteButton);
-    // markWatched(li);
-    container.appendChild(li);
+
     const link = document.createElement("a");
     link.href = "#";
     link.textContent = "Детальніше";
-    link.addEventListener("click", function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const info = document.createElement("p");
-        info.textContent = movie.description;
-        li.appendChild(info);
+
+    link.addEventListener("click", function (event) {
+        showMovieDetails(event, movie, li);
     });
+
     li.appendChild(link);
+    container.appendChild(li);
+    li.setAttribute("data-id", movie.id);
 };
 
+
+container.addEventListener("click", function (event) {
+    if (event.target.classList.contains("delete-button")) {
+        const li = event.target.closest("li");
+        const id = Number(li.dataset.id);
+
+        movies = movies.filter(movie => movie.id !== id);
+        li.remove();
+    }
+});
+const showMovieDetails = (event, movie, li) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (li.querySelector("p")) {
+        return;
+    }
+    const info = document.createElement("p");
+    info.textContent = movie.description;
+    li.appendChild(info);
+};
 const renderMovies = (movies) => {
     movies.forEach(function(movie) {
         renderMovie(movie);
@@ -107,7 +132,8 @@ const renderMovies = (movies) => {
 }
 const displayMoviesQuantity = () => {
     const watchedMovies = movies.filter(function(movie) {
-        return movie.watched; });
+        return movie.watched;
+    });
     title.textContent = `Watched: ${watchedMovies.length} of ${movies.length}`;
 };
 
@@ -145,7 +171,10 @@ function toggleTheme() {
     document.body.classList.toggle("dark");
 }
 document.addEventListener("keydown", function(event) {
-    if (event.key.toLowerCase() === "d") {
+    if (
+        event.key.toLowerCase() === "d" &&
+        !event.target.closest("input, textarea")
+    ) {
         toggleTheme();
     }
 });
